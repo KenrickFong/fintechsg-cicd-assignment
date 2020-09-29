@@ -1,28 +1,15 @@
-name: Super-Linter
+name: telegram message
+on: [push]
+jobs:
 
-# Run this workflow every time a new commit is pushed
-on: push
-
-jobs: 
-  # Set the job key. The key is displayed as the job name
-  # when a job name is not provided
-  super-lint:
-    # Name the job
-    name: Lint code base
-    # Set the type of machine to run on
+  build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
-          
-      #Send a telegram message
-      - name: Telegram Notify
-        # You may pin to the exact commit or the version.
-        # uses: appleboy/telegram-action@ae54341a85fdcf97cbea354678d7b8c062286c15
-        uses: appleboy/telegram-action@0.0.3
-        with: 
-          to: https://t.me/fintechsgvinson
-          token: https://t.me/fintechsgvinson
-          message: "Hello"
+    - uses: actions/checkout@master
+    - name: send custom message with args
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        args: The event triggered first step.
