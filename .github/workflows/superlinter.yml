@@ -2,7 +2,7 @@ name: Telegram Notifications
 
 on:
   issues:
-    types: [opened, reopened, deleted, closed]
+    types: [opened, reopened, deleted, closed, push]
 
 jobs:
   notify:
